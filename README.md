@@ -14,4 +14,8 @@ ruby build_loot_tables.rb -h
 Double click `add_loot_tables.bat`
 
 ## To remove the loot tables
-Double click `remove_loot_tables.bat`
+Double click `delete_loot_tables.bat`
+
+
+# Unsupported mods
+* EorzeanArmory - They named their weapon files wrong.

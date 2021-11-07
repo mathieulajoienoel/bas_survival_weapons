@@ -1,2 +1,2 @@
-ruby loot_tables.rb -y -a -m
+ruby loot_tables.rb
 pause
