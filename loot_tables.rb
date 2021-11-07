@@ -213,7 +213,7 @@ class App
     # Give the user a chance to review the files to delete
     if !OPTIONS[:quiet]
       puts "Folders that will be deleted :"
-      to_delete.map {|f| puts f.inspect }
+      to_delete.map { |f| puts f.inspect }
     end
     # Get the users answer
     if !OPTIONS[:force_yes]

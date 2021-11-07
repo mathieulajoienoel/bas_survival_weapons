@@ -1,6 +1,8 @@
 # Survival Weapons
 Requires ruby 2.4+
 
+https://rubyinstaller.org/
+
 Adds all modded weapons to the survival loot tables. Run it every time you add or remove mods.
 
 You can change the excluded weapons in the `config/excluded_weapons.json` file.
