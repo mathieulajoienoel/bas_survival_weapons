@@ -1,17 +1,3 @@
-# Ruby 3.0.2
-# ruby add_loot_tables.rb
-# @author mathieulajoienoel
-
-require 'json'
-require 'fileutils'
-
-MOD_FOLDER = "./../"
-EXPORT_FOLDER_NAME = "LootTables"
-EXCLUDED_IDS_FILENAME = "excluded_weapons.json"
-EXCLUDED_WEAPONS_IDS = JSON.parse(File.read(EXCLUDED_IDS_FILENAME))
-EXCLUDED_WEAPONS_IDS.map!(&:downcase)
-MADE_BY_ME_MARKER = "managed_by_mln"
-
 def filter_weapon_ids(weapon_ids)
   # Filter the weapons
   weapon_ids = weapon_ids - EXCLUDED_WEAPONS_IDS
@@ -74,25 +60,5 @@ def create_tables(mod_path, weapon_ids)
     end
   end
   # Add a marker to know that we are managing these loot tables
-  FileUtils.touch(File.join(export_folder, MADE_BY_ME_MARKER))
+  FileUtils.touch(File.join(export_folder, MADE_BY_ME_MARKER)) if options[:add_marker]
 end
-
-# For each mod folder
-Dir.glob(File.join(MOD_FOLDER, "/*")).each do |mod_path|
-  next if !File.directory?(mod_path)
-  # Check that we don't already have loot tables
-  next if File.exists?(File.join(mod_path, EXPORT_FOLDER_NAME))
-  # Get all weapon ids from this mod
-  weapon_ids = get_weapon_ids(mod_path)
-  weapon_ids = filter_weapon_ids(weapon_ids)
-
-  # weapon_ids.map { |w| puts w.inspect }
-  # exit
-  next if weapon_ids.empty?
-  # Create the json data for the loot tables and save the files
-  create_tables(mod_path, weapon_ids)
-end
-
-puts 'done'
-
-

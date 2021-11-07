@@ -1,1 +1,2 @@
-ruby remove_loot_tables.rb
+ruby loot_tables.rb -d
+pause

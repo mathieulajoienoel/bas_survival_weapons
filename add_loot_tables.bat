@@ -1,1 +1,2 @@
-ruby add_loot_tables.rb
+ruby loot_tables.rb -y -a -m
+pause
