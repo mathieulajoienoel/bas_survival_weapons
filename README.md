@@ -21,3 +21,7 @@ Double click `delete_loot_tables.bat`
 
 # Unsupported mods
 * EorzeanArmory - They named their weapon files wrong.
+
+
+# Update!
+Added new enemy_weapons! This will make enemies spawn with modded weapons!

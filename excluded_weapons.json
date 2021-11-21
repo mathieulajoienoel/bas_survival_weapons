@@ -18,5 +18,16 @@
   "collider9",
   "collider10",
   "Rock Weapon 1",
-  "Rock Weapon 2"
+  "Rock Weapon 2",
+  "GrooveSlinger.SummonedArrow",
+  "GrooveSlinger.SummonedAxe",
+  "GrooveSlinger.SummonedBow",
+  "GrooveSlinger.SummonedDagger",
+  "GrooveSlinger.SummonedGreatAxe",
+  "GrooveSlinger.SummonedLongsword",
+  "GrooveSlinger.SummonedMace",
+  "GrooveSlinger.SummonedSpear",
+  "GrooveSlinger.SummonedSword",
+  "GrooveSlinger.SummonedTorch",
+  "GrooveSlinger.SummonedShield"
 ]
