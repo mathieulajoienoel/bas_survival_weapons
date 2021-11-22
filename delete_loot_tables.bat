@@ -1,1 +1,2 @@
-ruby loot_tables.rb -d
+ruby survival_weapons.rb -d
+pause
