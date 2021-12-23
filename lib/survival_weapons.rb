@@ -2,6 +2,8 @@ require_relative 'loot_tables'
 
 class SurvivalWeapons < LootTables
 
+  USE_CATEGORIES = false
+
   private
 
     def table_identifiers

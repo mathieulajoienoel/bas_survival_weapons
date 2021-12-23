@@ -15,13 +15,15 @@ module WeaponParser
     return weapon_ids.compact.uniq
   end
 
-  def get_weapon_ids(mod_path)
+  def get_weapon_ids(mod_path, use_categories: false)
     # Get all weapon ids
     weapon_ids = []
     weapon_files = Dir["#{mod_path}/**/Item_Weapon_*.json"] + Dir["#{mod_path}/**/Item_Shield_*.json"] + Dir["#{mod_path}/**/Item_Arrow_*.json"]
+    @weapon_categories = self.weapon_categories if use_categories
     weapon_files.each do |fname|
       begin
         data = JSON.parse(File.read(fname))
+        @weapon_categories = self.set_in_category(@weapon_categories, data) if use_categories
         weapon_ids << data['id'] if !data["id"].nil?
       rescue StandardError => error
         puts "Failed to parse #{fname}"
@@ -33,19 +35,21 @@ module WeaponParser
   end
 
   def weapon_categories
-    @weapon_categories ||= Hash.new(table_identifiers.keys.map {|x| [x, []]})
+    @weapon_categories = table_identifiers.map {|x| [x, []]}.to_h
   end
 
   def set_in_category(categories, weapon)
-    case weapon['modules']['weaponClass']
+    puts categories.inspect
+    return categories if weapon['modules'].empty? || categories.empty?
+    case weapon['modules'][0]['weaponClass']
     when "Melee"
-      if weapon['modules']['weaponHandling'] == "OneHanded"
-        categories['Weapon1H'] << data['id']
+      if weapon['modules'][0]['weaponHandling'] == "OneHanded"
+        categories['Weapon1H'] << weapon['id']
       else
-        categories['Weapon2H'] << data['id']
+        categories['Weapon2H'] << weapon['id']
       end
     when "Shield"
-      categories['ShieldMisc'] << data['id']
+      categories['ShieldMisc'] << weapon['id']
     end
     return categories
   end

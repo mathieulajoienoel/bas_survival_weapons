@@ -10,6 +10,8 @@ class LootTables
   # File marker name
   MADE_BY_ME_MARKER = "managed_by_mln"
 
+  USE_CATEGORIES = false
+
   include WeaponParser
 
   def create
@@ -28,9 +30,9 @@ class LootTables
         next
       end
 
-      puts "Fetching all weapon ids" if !OPTIONS[:quiet]
+      puts "Fetching all weapon ids for #{mod_path}" if !OPTIONS[:quiet]
       # Get all weapon ids from this mod
-      weapon_ids = get_weapon_ids(mod_path)
+      weapon_ids = get_weapon_ids(mod_path, use_categories: USE_CATEGORIES)
       weapon_ids = filter_weapon_ids(weapon_ids)
 
       if weapon_ids.empty?
@@ -42,6 +44,7 @@ class LootTables
         # Print the found weapon ids
         puts mod_path.inspect
         weapon_ids.map { |w| puts w.inspect }
+        @weapon_categories.map { |w| puts w.inspect }
         # exit 0
       else
         puts "Creating tables for #{mod_path} with #{weapon_ids.length} weapons" if !OPTIONS[:quiet]
@@ -132,7 +135,6 @@ class LootTables
     end
 
     # Fill the data for a table
-    # @@TODO bug here : set_in_category should be used for enemy weapons
     def create_table(file_data, ex_folder, id, weapon_ids, file_name)
       file_data["id"] = self.export_file_id(id)
       file_data["drops"] = []
