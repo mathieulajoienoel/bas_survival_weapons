@@ -132,6 +132,7 @@ class LootTables
     end
 
     # Fill the data for a table
+    # @@TODO bug here : set_in_category should be used for enemy weapons
     def create_table(file_data, ex_folder, id, weapon_ids, file_name)
       file_data["id"] = self.export_file_id(id)
       file_data["drops"] = []

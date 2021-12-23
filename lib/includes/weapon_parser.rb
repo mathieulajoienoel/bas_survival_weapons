@@ -32,9 +32,6 @@ module WeaponParser
     return weapon_ids
   end
 
-  def get_weapon_type
-  end
-
   def weapon_categories
     @weapon_categories ||= Hash.new(table_identifiers.keys.map {|x| [x, []]})
   end
