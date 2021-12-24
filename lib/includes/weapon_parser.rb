@@ -39,7 +39,6 @@ module WeaponParser
   end
 
   def set_in_category(categories, weapon)
-    puts categories.inspect
     return categories if weapon['modules'].empty? || categories.empty?
     case weapon['modules'][0]['weaponClass']
     when "Melee"

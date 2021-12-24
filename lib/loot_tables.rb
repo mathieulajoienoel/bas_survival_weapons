@@ -10,8 +10,6 @@ class LootTables
   # File marker name
   MADE_BY_ME_MARKER = "managed_by_mln"
 
-  USE_CATEGORIES = false
-
   include WeaponParser
 
   def create
@@ -32,7 +30,7 @@ class LootTables
 
       puts "Fetching all weapon ids for #{mod_path}" if !OPTIONS[:quiet]
       # Get all weapon ids from this mod
-      weapon_ids = get_weapon_ids(mod_path, use_categories: USE_CATEGORIES)
+      weapon_ids = get_weapon_ids(mod_path, use_categories: self.use_categories)
       weapon_ids = filter_weapon_ids(weapon_ids)
 
       if weapon_ids.empty?
@@ -104,6 +102,10 @@ class LootTables
   end
 
   private
+
+    def use_categories
+      return false
+    end
 
     def base_file_data
       return {

@@ -2,8 +2,6 @@ require_relative 'loot_tables'
 
 class SurvivalWeapons < LootTables
 
-  USE_CATEGORIES = false
-
   private
 
     def table_identifiers
@@ -18,5 +16,9 @@ class SurvivalWeapons < LootTables
     # Export sub folder name
     def export_sub_folder
       return '' # 'SurvivalLoot'
+    end
+
+    def use_categories
+      return false
     end
 end

@@ -2,13 +2,15 @@ require_relative 'loot_tables'
 
 class EnemyWeapons < LootTables
 
-  USE_CATEGORIES = true
-
   def initialize
     self.weapon_categories
   end
 
   private
+
+    def use_categories
+      return true
+    end
 
     # Fill the data for a table
     def create_table(file_data, ex_folder, id, weapon_ids, file_name)
