@@ -3,6 +3,7 @@ require 'fileutils'
 require_relative 'includes/weapon_parser'
 
 class LootTables
+
   # Folder where all the Blade and Sorcery mods are.
   MOD_FOLDER = "./../"
   # The name ot the LootTables folder
@@ -10,12 +11,18 @@ class LootTables
   # File marker name
   MADE_BY_ME_MARKER = "managed_by_mln"
 
+  # The excluded mods config file
+  EXCLUDED_MODS_FILENAME = "excluded_mods.json"
+  # The excluded mods
+  EXCLUDED_MODS = JSON.parse(File.read(EXCLUDED_MODS_FILENAME))
+  EXCLUDED_MODS.map! { |x| "#{MOD_FOLDER}#{x}"  }
+
   include WeaponParser
 
   def create
     # Add the loot tables in each mod folder
     # For each mod folder
-    self.mod_folders.each do |mod_path|
+    (self.mod_folders - EXCLUDED_MODS).each do |mod_path|
       # Is it a directory ?
       if !File.directory?(mod_path)
         puts "Skipping #{mod_path}" if !OPTIONS[:quiet]
