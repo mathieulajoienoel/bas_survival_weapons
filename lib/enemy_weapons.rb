@@ -36,7 +36,7 @@ class EnemyWeapons < LootTables
     end
 
     def table_identifiers
-      return ['Weapon1H', 'Weapon2H', 'ShieldMisc']
+      return ['Weapon1H', 'Weapon2H', 'ShieldMisc', 'WeaponRand']
       # ['ShieldMisc', 'Weapon1H', 'Weapon2H', 'WeaponAxe', 'WeaponDagger', 'WeaponMace', 'WeaponStaff', 'WeaponSword']
     end
 

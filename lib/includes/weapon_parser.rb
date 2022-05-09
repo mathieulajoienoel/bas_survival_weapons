@@ -49,6 +49,8 @@ module WeaponParser
       end
     when "Shield"
       categories['ShieldMisc'] << weapon['id']
+    else
+      categories['WeaponRand'] << weapon['id']
     end
     return categories
   end
