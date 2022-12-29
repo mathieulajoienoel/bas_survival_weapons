@@ -18,9 +18,8 @@ module WeaponParser
   def get_weapon_ids(mod_path, use_categories: false)
     # Get all weapon ids
     weapon_ids = []
-    weapon_files = Dir["#{mod_path}/**/Item_Weapon_*.json"] + Dir["#{mod_path}/**/Item_Shield_*.json"] + Dir["#{mod_path}/**/Item_Arrow_*.json"]
     @weapon_categories = self.weapon_categories if use_categories
-    weapon_files.each do |fname|
+    file_names_to_parse(mod_path).each do |fname|
       begin
         data = JSON.parse(File.read(fname))
         @weapon_categories = self.set_in_category(@weapon_categories, data) if use_categories
@@ -54,5 +53,11 @@ module WeaponParser
     end
     return categories
   end
+
+  private
+
+    def file_names_to_parse(mod_path)(mod_path)
+      return Dir["#{mod_path}/**/Item_Weapon_*.json"] + Dir["#{mod_path}/**/Item_Shield_*.json"] + Dir["#{mod_path}/**/Item_Arrow_*.json"]
+    end
 
 end

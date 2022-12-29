@@ -6,8 +6,6 @@ class LootTables
 
   # Folder where all the Blade and Sorcery mods are.
   MOD_FOLDER = "./../"
-  # The name ot the LootTables folder
-  EXPORT_FOLDER_NAME = "LootTables"
   # File marker name
   MADE_BY_ME_MARKER = "managed_by_mln"
 
@@ -18,6 +16,10 @@ class LootTables
   EXCLUDED_MODS.map! { |x| "#{MOD_FOLDER}#{x}"  }
 
   include WeaponParser
+
+  def initialize
+    @weapon_categories = []
+  end
 
   def create
     # Add the loot tables in each mod folder
@@ -31,7 +33,7 @@ class LootTables
       ex_folder = export_folder(mod_path, use_sub_folder: false)
       # Check that we don't already have loot tables and that the marker is present
       if File.exists?(ex_folder) && !File.exists?(File.join(ex_folder, MADE_BY_ME_MARKER))
-        puts "Loot tables already present in #{mod_path}. Skipping" if !OPTIONS[:quiet]
+        puts "#{export_folder_name} already present in #{mod_path}. Skipping" if !OPTIONS[:quiet]
         next
       end
 
@@ -48,8 +50,8 @@ class LootTables
       if OPTIONS[:print_weapon_ids]
         # Print the found weapon ids
         puts mod_path.inspect
-        weapon_ids.map { |w| puts w.inspect }
-        @weapon_categories.map { |w| puts w.inspect }
+        weapon_ids.map { |w| puts w.inspect } if !weapon_ids.empty?
+        @weapon_categories.map { |w| puts w.inspect } if !@weapon_categories.empty?
         # exit 0
       else
         puts "Creating tables for #{mod_path} with #{weapon_ids.length} weapons" if !OPTIONS[:quiet]
@@ -72,7 +74,7 @@ class LootTables
       next if !File.directory?(mod_path)
       # Get the LootTables folder
       ex_folder = export_folder(mod_path)
-      loot_tables_folder_path = export_folder(mod_path) # File.join(mod_path, EXPORT_FOLDER_NAME)
+      loot_tables_folder_path = export_folder(mod_path) # File.join(mod_path, export_folder_name)
       # Get the marker file path
       marker_file_path = File.join(loot_tables_folder_path, MADE_BY_ME_MARKER)
       # Make sure the marker and the loot table folder are there
@@ -193,8 +195,8 @@ class LootTables
 
     # The full export folder name
     def export_folder(mod_path, use_sub_folder: true)
-      return File.join(mod_path, EXPORT_FOLDER_NAME, self.export_sub_folder) if use_sub_folder
-      return File.join(mod_path, EXPORT_FOLDER_NAME)
+      return File.join(mod_path, export_folder_name, self.export_sub_folder) if use_sub_folder
+      return File.join(mod_path, export_folder_name)
     end
 
     # To override in children
@@ -210,5 +212,10 @@ class LootTables
     # Export sub folder name
     def export_sub_folder
       throw Exception.new("Must be overridden")
+    end
+
+    # The name of the folder
+    def export_folder_name
+      return "LootTables"
     end
 end

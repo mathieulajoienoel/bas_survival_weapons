@@ -24,4 +24,5 @@ Double click `delete_loot_tables.bat`
 
 
 # Update!
-Added new enemy_weapons! This will make enemies spawn with modded weapons!
+- Added new enemy_weapons! This will make enemies spawn with modded weapons!
+- Added new enemy_types! This will make custom enemies spawn in mixed waves!
