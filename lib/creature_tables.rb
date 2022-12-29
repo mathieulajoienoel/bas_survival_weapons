@@ -37,16 +37,16 @@ class CreatureTables < LootTables
           "referenceID": cr_id,
           "overrideFaction": false,
           "factionID": 0,
-          "overrideContainer": false,
-          "overrideContainerID": "",
-          "overrideBrain": false,
-          "overrideBrainID": "",
+          #"overrideContainer": false,
+          #"overrideContainerID": "",
+          #"overrideBrain": false,
+          #"overrideBrainID": "",
           "probabilityWeights": [
             1,
-            1,
-            1,
-            1,
-            1
+            0,
+            0,
+            0,
+            0
           ]
         }
       end

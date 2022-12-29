@@ -1,2 +1,2 @@
-ruby enemy_weapons.rb -d
+ruby enemy_types.rb -d
 pause
