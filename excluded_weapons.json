@@ -45,5 +45,18 @@
   "FisherMiniCannonBall",
   "BritishOfficerSaberSheath",
   "JasonGift_Toy",
-  "LashingBomb"
+  "LashingBomb",
+  "HumanMaleAdvanced",
+  "BossL1",
+  "BossL2",
+  "BossL3",
+  "CreatureImpossiboss",
+  "CreatureFrostGiant",
+  "HolderSheath",
+  "Sheath",
+  "Creature_PlayerDefaultFemale",
+  "Creature_PlayerDefaultMale",
+  "Creature_HumanMale",
+  "Creature_HumanFemale",
+  "Youngling"
 ]

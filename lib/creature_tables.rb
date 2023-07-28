@@ -62,7 +62,8 @@ class CreatureTables < LootTables
     def table_identifiers
       return [
         "MixedAll",
-        # "MixedMelee"
+        "MixedMelee",
+        "DungeonHumansMix"
       ]
     end
 

@@ -49,6 +49,11 @@ class EnemyWeapons < LootTables
     def export_sub_folder
       return '' # 'EnemyWeapons'
     end
+
+    # The name of the folder
+    def export_folder_name
+      return "LootTables_mln"
+    end
 end
 
 

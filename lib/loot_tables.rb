@@ -216,6 +216,6 @@ class LootTables
 
     # The name of the folder
     def export_folder_name
-      return "LootTables"
+      return "LootTables_mln"
     end
 end
