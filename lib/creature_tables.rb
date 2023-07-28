@@ -8,7 +8,6 @@ class CreatureTables < LootTables
       return {
         "$type" => "ThunderRoad.CreatureTable, ThunderRoad",
         "id" => "",
-        "saveFolder" => "bas",
         "sensitiveContent" => "None",
         "sensitiveFilterBehaviour" => "Discard",
         "version" => 1,
@@ -23,25 +22,25 @@ class CreatureTables < LootTables
     end
 
     # Fill the data for a table
-    def create_table(file_data, ex_folder, id, creature_ids, file_name)
+    def create_table(file_data, ex_folder, id, table_ids, file_name)
       file_data["id"] = self.export_file_id(id)
       file_data["drops"] = []
 
       file_name = export_file_name(ex_folder, file_data["id"])
 
       # Add all the creatures that were found
-      creature_ids.each do |cr_id|
+      table_ids.each do |table_id|
         file_data["drops"] << {
-          "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
-          "reference": "Creature",
-          "referenceID": cr_id,
-          "overrideFaction": false,
-          "factionID": 0,
-          #"overrideContainer": false,
-          #"overrideContainerID": "",
-          #"overrideBrain": false,
-          #"overrideBrainID": "",
-          "probabilityWeights": [
+          "$type" => "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+          "reference" => "Table",
+          "referenceID" => table_id,
+          "overrideFaction" => false,
+          "factionID" => 0,
+          "overrideContainer" => false,
+          "overrideContainerID" => nil,
+          "overrideBrain" => false,
+          "overrideBrainID" => nil,
+          "probabilityWeights" => [
             1,
             0,
             0,
@@ -49,6 +48,24 @@ class CreatureTables < LootTables
             0
           ]
         }
+        # file_data["drops"] << {
+        #   "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+        #   "reference": "Creature",
+        #   "referenceID": cr_id,
+        #   "overrideFaction": false,
+        #   "factionID": 0,
+        #   #"overrideContainer": false,
+        #   #"overrideContainerID": "",
+        #   #"overrideBrain": false,
+        #   #"overrideBrainID": "",
+        #   "probabilityWeights": [
+        #     1,
+        #     0,
+        #     0,
+        #     0,
+        #     0
+        #   ]
+        # }
       end
 
       # Save it
@@ -78,7 +95,8 @@ class CreatureTables < LootTables
     end
 
     def file_names_to_parse(mod_path)
-      return Dir["#{mod_path}/**/Creature_*.json"]
+      regex_to_exclude = Regexp.new((self.table_identifiers + [self.export_folder_name]).join('|'))
+      return Dir["#{mod_path}/**/CreatureTable_*.json"].reject {|name| name[regex_to_exclude] }
     end
 
     # The name of the folder

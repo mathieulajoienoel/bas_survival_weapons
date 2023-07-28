@@ -1,28 +1,26 @@
 # Survival Weapons
-Requires ruby 2.4+
+Requires ruby 3.2+
 
 https://rubyinstaller.org/
 
-Adds all modded weapons to the survival loot tables. Run it every time you add or remove mods.
+This mod adds:
+- All custom enemies to the MixedAll, MixedMelee and DungeonHumansMix
+- All custom weapons to Survival rewards
+- All custom weapons to Enemy weapons
 
-You can change the excluded weapons in the `config/excluded_weapons.json` file.
+Run it every time you add or remove mods.
+
+You can change the excluded weapons in the `config/excluded_items.json` file.
+
+You can change the excluded mods in the `config/excluded_mods.json` file.
 
 ## For help
 ```bash
-ruby build_loot_tables.rb -h
+ruby main.rb -h
 ```
 
-## To add the loot tables
-Double click `add_loot_tables.bat`
+## To add
+Double click `add.bat`
 
-## To remove the loot tables
-Double click `delete_loot_tables.bat`
-
-
-# Unsupported mods
-* EorzeanArmory - They named their weapon files wrong.
-
-
-# Update!
-- Added new enemy_weapons! This will make enemies spawn with modded weapons!
-- Added new enemy_types! This will make custom enemies spawn in mixed waves!
+## To remove
+Double click `remove.bat`

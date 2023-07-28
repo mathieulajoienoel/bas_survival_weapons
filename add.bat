@@ -1,0 +1,2 @@
+ruby main.rb
+pause

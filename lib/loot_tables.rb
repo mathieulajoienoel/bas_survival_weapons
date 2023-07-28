@@ -1,13 +1,11 @@
 require 'json'
 require 'fileutils'
-require_relative 'includes/weapon_parser'
+require_relative 'includes/item_parser'
 
 class LootTables
 
   # Folder where all the Blade and Sorcery mods are.
   MOD_FOLDER = "./../"
-  # File marker name
-  MADE_BY_ME_MARKER = "managed_by_mln"
 
   # The excluded mods config file
   EXCLUDED_MODS_FILENAME = "excluded_mods.json"
@@ -15,10 +13,10 @@ class LootTables
   EXCLUDED_MODS = JSON.parse(File.read(EXCLUDED_MODS_FILENAME))
   EXCLUDED_MODS.map! { |x| "#{MOD_FOLDER}#{x}"  }
 
-  include WeaponParser
+  include ItemParser
 
   def initialize
-    @weapon_categories = []
+    @item_categories = []
   end
 
   def create
@@ -31,56 +29,56 @@ class LootTables
         next
       end
       ex_folder = export_folder(mod_path, use_sub_folder: false)
-      # Check that we don't already have loot tables and that the marker is present
-      if File.exists?(ex_folder) && !File.exists?(File.join(ex_folder, MADE_BY_ME_MARKER))
-        puts "#{export_folder_name} already present in #{mod_path}. Skipping" if !OPTIONS[:quiet]
+      # # Check that we don't already have loot tables and that the marker is present
+      # if File.exist?(ex_folder) && !File.exist?(File.join(ex_folder, MADE_BY_ME_MARKER))
+      #   puts "#{export_folder_name} already present in #{mod_path}. Skipping" if !OPTIONS[:quiet]
+      #   next
+      # end
+
+      puts "Fetching all item ids for #{mod_path}" if !OPTIONS[:quiet]
+      # Get all item ids from this mod
+      item_ids = get_item_ids(mod_path, use_categories: self.use_categories)
+      item_ids = filter_item_ids(item_ids)
+
+      if item_ids.empty?
+        puts "No item ids for #{mod_path}. Skipping" if !OPTIONS[:quiet]
         next
       end
 
-      puts "Fetching all weapon ids for #{mod_path}" if !OPTIONS[:quiet]
-      # Get all weapon ids from this mod
-      weapon_ids = get_weapon_ids(mod_path, use_categories: self.use_categories)
-      weapon_ids = filter_weapon_ids(weapon_ids)
-
-      if weapon_ids.empty?
-        puts "No weapon ids for #{mod_path}. Skipping" if !OPTIONS[:quiet]
-        next
-      end
-
-      if OPTIONS[:print_weapon_ids]
-        # Print the found weapon ids
+      if OPTIONS[:print_item_ids]
+        # Print the found item ids
         puts mod_path.inspect
-        weapon_ids.map { |w| puts w.inspect } if !weapon_ids.empty?
-        @weapon_categories.map { |w| puts w.inspect } if !@weapon_categories.empty?
-        # exit 0
+        item_ids.map { |w| puts w.inspect } if !item_ids.empty?
+        @item_categories.map { |w| puts w.inspect } if !@item_categories.empty?
       else
-        puts "Creating tables for #{mod_path} with #{weapon_ids.length} weapons" if !OPTIONS[:quiet]
+        puts "Creating tables for #{mod_path} with #{item_ids.length} items" if !OPTIONS[:quiet]
         # Create the json data for the loot tables and save the files
-        create_tables(mod_path, weapon_ids)
+        create_tables(mod_path, item_ids)
       end
     end
 
     puts 'Done' if !OPTIONS[:quiet]
-    exit 0
+    # exit 0
   end
 
   def destroy
     # Get all mod folders
     to_delete = []
-    loot_tables_folder_path = nil
+    custom_tables_folder_path = nil
     marker_file_path = nil
     self.mod_folders.each do |mod_path|
       # Is it a folder ?
       next if !File.directory?(mod_path)
       # Get the LootTables folder
       ex_folder = export_folder(mod_path)
-      loot_tables_folder_path = export_folder(mod_path) # File.join(mod_path, export_folder_name)
+      custom_tables_folder_path = export_folder(mod_path) # File.join(mod_path, export_folder_name)
       # Get the marker file path
-      marker_file_path = File.join(loot_tables_folder_path, MADE_BY_ME_MARKER)
+      # marker_file_path = File.join(custom_tables_folder_path, MADE_BY_ME_MARKER)
       # Make sure the marker and the loot table folder are there
-      next if !(File.exists?(loot_tables_folder_path) && File.exists?(marker_file_path))
+      # next if !(File.exist?(custom_tables_folder_path) && File.exist?(marker_file_path))
+      next if !File.exist?(custom_tables_folder_path)
       # Add the folder to the array
-      to_delete << loot_tables_folder_path
+      to_delete << custom_tables_folder_path
 
       # ([ex_folder] - Dir.glob(File.join(export_folder(mod_path, use_sub_folder: false), "/*"))).inspect
     end
@@ -107,7 +105,7 @@ class LootTables
     end
 
     puts 'Done' if !OPTIONS[:quiet]
-    exit 0
+    # exit 0
   end
 
   private
@@ -117,13 +115,7 @@ class LootTables
     end
 
     def base_file_data
-      return {
-        "$type" => "ThunderRoad.LootTable, Assembly-CSharp",
-        "id" => "",
-        "saveFolder" => "Bas",
-        "version" => 1,
-        "drops" => []
-      }
+      raise StandardError.new("Missing base file data");
     end
 
     def mod_folders
@@ -131,7 +123,7 @@ class LootTables
     end
 
     # Create all tables
-    def create_tables(mod_path, weapon_ids)
+    def create_tables(mod_path, item_ids)
       ex_folder = self.export_folder(mod_path)
       # Setup the base file contents
       create_export_folder(ex_folder)
@@ -139,21 +131,19 @@ class LootTables
       file_name = ""
       # Create each file
       self.table_identifiers.each do |id|
-        self.create_table(file_data, ex_folder, id, weapon_ids, file_name)
+        self.create_table(file_data, ex_folder, id, item_ids, file_name)
       end
-      # Add a marker to know that we are managing these files
-      FileUtils.touch(File.join(ex_folder, MADE_BY_ME_MARKER)) if OPTIONS[:add_marker]
     end
 
     # Fill the data for a table
-    def create_table(file_data, ex_folder, id, weapon_ids, file_name)
+    def create_table(file_data, ex_folder, id, item_ids, file_name)
       file_data["id"] = self.export_file_id(id)
       file_data["drops"] = []
 
       file_name = export_file_name(ex_folder, file_data["id"])
 
-      # Add all the weapons that were found
-      weapon_ids.each do |wep_id|
+      # Add all the items that were found
+      item_ids.each do |wep_id|
         file_data["drops"] << {
           "reference" => 0,
           "referenceID" => wep_id,
@@ -174,7 +164,7 @@ class LootTables
     end
 
     def create_export_folder(ex_folder)
-      FileUtils.mkdir_p(ex_folder) if !File.exists?(ex_folder)
+      FileUtils.mkdir_p(ex_folder) if !File.exist?(ex_folder)
     end
 
     def probability_weight
@@ -186,7 +176,7 @@ class LootTables
     end
 
     def export_file_prefix
-      return 'LootTable'
+      raise StandardError.new("Missing export_file_prefix")
     end
 
     def export_file_name(ex_folder, file_id)
@@ -201,21 +191,21 @@ class LootTables
 
     # To override in children
     def table_identifiers
-      throw Exception.new("Must be overridden")
+      throw Exception.new("Must be overridden: table_identifiers")
     end
 
     # The file name to use
     def base_name
-      throw Exception.new("Must be overridden")
+      throw Exception.new("Must be overridden: base_name")
     end
 
     # Export sub folder name
     def export_sub_folder
-      throw Exception.new("Must be overridden")
+      throw Exception.new("Must be overridden: export_sub_folder")
     end
 
     # The name of the folder
     def export_folder_name
-      return "LootTables_mln"
+      throw Exception.new("Must be overridden: export_folder_name")
     end
 end

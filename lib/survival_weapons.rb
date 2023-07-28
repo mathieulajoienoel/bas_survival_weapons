@@ -4,6 +4,22 @@ class SurvivalWeapons < LootTables
 
   private
 
+    def base_file_data
+      return {
+        "$type": "ThunderRoad.LootTable, ThunderRoad",
+        "id": "",
+        "sensitiveContent": "None",
+        "sensitiveFilterBehaviour": "Discard",
+        "version": 1,
+        "groupPath": "Rewards/Survival",
+        "drops": []
+      }
+    end
+
+    def export_file_prefix
+      return 'LootTable'
+    end
+
     def table_identifiers
       return (1..10).to_a
     end
@@ -20,5 +36,10 @@ class SurvivalWeapons < LootTables
 
     def use_categories
       return false
+    end
+
+    # The name of the folder
+    def export_folder_name
+      return "LootTables_mln"
     end
 end
