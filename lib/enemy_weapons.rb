@@ -14,13 +14,13 @@ class EnemyWeapons < LootTables
 
     def base_file_data
       return {
-        "$type": "ThunderRoad.LootTable, ThunderRoad",
-        "id": "",
-        "sensitiveContent": "None",
-        "sensitiveFilterBehaviour": "Discard",
-        "version": 1,
-        "groupPath": "Weapons",
-        "drops": []
+        "$type" => "ThunderRoad.LootTable, ThunderRoad",
+        "id" => "",
+        "sensitiveContent" => "None",
+        "sensitiveFilterBehaviour" => "Discard",
+        "version" => 1,
+        "groupPath" => "Weapons",
+        "drops" => []
       }
     end
 

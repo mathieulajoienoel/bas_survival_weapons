@@ -6,13 +6,13 @@ class SurvivalWeapons < LootTables
 
     def base_file_data
       return {
-        "$type": "ThunderRoad.LootTable, ThunderRoad",
-        "id": "",
-        "sensitiveContent": "None",
-        "sensitiveFilterBehaviour": "Discard",
-        "version": 1,
-        "groupPath": "Rewards/Survival",
-        "drops": []
+        "$type" => "ThunderRoad.LootTable, ThunderRoad",
+        "id" => "",
+        "sensitiveContent" => "None",
+        "sensitiveFilterBehaviour" => "Discard",
+        "version" => 1,
+        "groupPath" => "Rewards/Survival",
+        "drops" => []
       }
     end
 
