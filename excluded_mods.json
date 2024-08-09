@@ -1,22 +1,5 @@
 [
-  "SimpleFirearmsFramework",
-  "ModularShotgunPack",
-  "ModularSMGPack",
-  "ModularFirearmsFramework",
-  "ModularPistolPack",
-  "Mandalorian Rifle",
-  "FishersGrenadeLauncher",
-  "GreatJourney",
-  "SpectralArmory",
-  "_disabled",
-  "HomeWaveBook",
-  "Painful Death SFX",
-  "HJ_Ethnicity",
-  "Hedge Knight",
-  "Enhanced Difficulty",
-  "VikingDungeonDLC",
-  "DoubleBarrel",
-  "zRealistic Decapitation",
-  "Pathetic Health",
-  "Pathetic Jump"
+  "mln_better_survival",
+  "_bas_survival_weapons",
+  "_disabled"
 ]

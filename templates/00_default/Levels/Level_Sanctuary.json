@@ -1,0 +1,100 @@
+{
+  "$type": "ThunderRoad.LevelData, ThunderRoad",
+  "id": "Sanctuary",
+  "version": 3,
+  "modes": [
+    {
+      "$type": "ThunderRoad.LevelData+Mode, ThunderRoad",
+      "name": "BetterSurvival",
+      "displayName": "Better Survival",
+      "description": "SurvivalDescription",
+      "allowGameModes": [
+        "Sandbox",
+        "Arcade"
+      ],
+      "mapOrder": 1,
+      "playerDeathAction": "AskReload",
+      "modules": [
+        {
+          "$type": "ThunderRoad.LevelModuleCleaner, ThunderRoad",
+          "cleanerRate": 5.0
+        },
+        {
+          "$type": "ThunderRoad.LevelModuleSurvival, ThunderRoad",
+          "canOnlyUseRewards": false,
+          "rewardPillarAddress": "Bas.LevelModule.RewardPillar",
+          "pillarZone": null,
+          "rewardsToSpawn": 3,
+          "firstRewardsContainerID": "AllWeaponRewards",
+          "startDelay": 3.0,
+          "loop": "Loop",
+          "wavesNumberForReward": 1,
+          "waves": [
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave0",
+              "containerID": "AllWeaponRewards"
+            },
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave1",
+              "containerID": "AllWeaponRewards"
+            },
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave2",
+              "containerID": "AllWeaponRewards"
+            },
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave3",
+              "containerID": "AllWeaponRewards"
+            },
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave4",
+              "containerID": "AllWeaponRewards"
+            },
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave5",
+              "containerID": "AllWeaponRewards"
+            },
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave6",
+              "containerID": "AllWeaponRewards"
+            },
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave7",
+              "containerID": "AllWeaponRewards"
+            },
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave8",
+              "containerID": "AllWeaponRewards"
+            },
+            {
+              "$type": "ThunderRoad.LevelModuleSurvival+Waves, ThunderRoad",
+              "waveID": "Better_Survival_Wave9",
+              "containerID": "AllWeaponRewards"
+            }
+          ],
+          "textGroupId": "Survival",
+          "textNextWaveId": "NextWave",
+          "textFightId": "Fight",
+          "textWaveId": "Wave"
+        },
+        {
+          "$type": "ThunderRoad.LevelModuleMusic, ThunderRoad",
+          "dynamicMusic": "MusicArenaRuins"
+        },
+        {
+          "$type": "LevelModuleResetSpawners, ThunderRoad"
+        }
+      ],
+      "availableOptions": []
+    }
+  ]
+}

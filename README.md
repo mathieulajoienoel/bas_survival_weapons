@@ -1,5 +1,5 @@
 # Survival Weapons
-Requires ruby 3.2+
+Requires ruby 3+
 
 https://rubyinstaller.org/
 

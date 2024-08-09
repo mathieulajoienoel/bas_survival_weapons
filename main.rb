@@ -1,28 +1,35 @@
-# Ruby 3.0.2
-# ruby enemy_types.rb
+# Ruby 3.3.4
+# ruby main.rb
 # @author mathieulajoienoel
-
+require 'fileutils'
 require_relative 'lib/option_parser'
-require_relative 'lib/creature_tables'
-require_relative 'lib/enemy_weapons'
-require_relative 'lib/survival_weapons'
 
-# If the user has selected to delete the tables
-enemy_types = CreatureTables.new
-enemy_weapons = EnemyWeapons.new
-survival_weapons = SurvivalWeapons.new
+require_relative 'lib/mod_parser'
+require_relative 'lib/loot_tables'
+require_relative 'lib/waves'
+
+class Main
+
+  def create
+    # Prepare the waves
+    waves = Waves.new.execute
+    # Prepare the loot_tables
+    loot_tables = LootTables.new.execute
+
+    # Copy template mod to mod folder
+    FileUtils.mkdir_p("./../mln_better_survival")
+    FileUtils.copy_entry('./templates/', "./../mln_better_survival/", true)
+  end
+
+  def delete
+    Dir.delete("./../mln_better_survival")
+  end
+
+end
+
+mod = Main.new
 if OPTIONS[:delete]
-  puts "Removing enemy_types" if !OPTIONS[:quiet]
-  enemy_types.destroy
-  puts "Removing enemy_weapons" if !OPTIONS[:quiet]
-  enemy_weapons.destroy
-  puts "Removing survival_weapons" if !OPTIONS[:quiet]
-  survival_weapons.destroy
+  mod.delete
 else
-  puts "Adding enemy_types" if !OPTIONS[:quiet]
-  enemy_types.create
-  puts "Adding enemy_weapons" if !OPTIONS[:quiet]
-  enemy_weapons.create
-  puts "Adding survival_weapons" if !OPTIONS[:quiet]
-  survival_weapons.create
+  mod.create
 end
