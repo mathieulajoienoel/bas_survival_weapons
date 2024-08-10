@@ -41,6 +41,51 @@
       "spawnPointIndex": -1,
       "prereqGroupIndex": -1,
       "prereqMaxRemainingAlive": 0
+    },
+    {
+      "$type": "ThunderRoad.WaveData+Group, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "MixedAllFull",
+      "overrideFaction": true,
+      "factionID": 3,
+      "groupHealthMultiplier": 1.0,
+      "minMaxCount": {
+        "x": 4,
+        "y": 6
+      },
+      "spawnPointIndex": -1,
+      "prereqGroupIndex": -1,
+      "prereqMaxRemainingAlive": 0
+    },
+    {
+      "$type": "ThunderRoad.WaveData+Group, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "MixedAllFull",
+      "overrideFaction": true,
+      "factionID": 3,
+      "groupHealthMultiplier": 1.0,
+      "minMaxCount": {
+        "x": 4,
+        "y": 6
+      },
+      "spawnPointIndex": -1,
+      "prereqGroupIndex": -1,
+      "prereqMaxRemainingAlive": 0
+    },
+    {
+      "$type": "ThunderRoad.WaveData+Group, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "MixedAllFull",
+      "overrideFaction": true,
+      "factionID": 3,
+      "groupHealthMultiplier": 1.0,
+      "minMaxCount": {
+        "x": 4,
+        "y": 6
+      },
+      "spawnPointIndex": -1,
+      "prereqGroupIndex": -1,
+      "prereqMaxRemainingAlive": 0
     }
   ],
   "groupPath": "Sandbox"
