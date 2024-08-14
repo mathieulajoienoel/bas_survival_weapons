@@ -1,0 +1,61 @@
+{
+  "$type": "ThunderRoad.CreatureTable, ThunderRoad",
+  "id": "MixedAllRegular",
+  "sensitiveContent": "None",
+  "sensitiveFilterBehaviour": "Discard",
+  "version": 1,
+  "description": null,
+  "linkedToGenderRatio": false,
+  "drops": [
+    {
+      "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "CultistAlertMix",
+      "probabilityWeight": 1
+    },
+    {
+      "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "CultistRareMix",
+      "probabilityWeight": 1
+    },
+    {
+      "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "ScavengerAlertMix",
+      "probabilityWeight": 1
+    },
+    {
+      "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "ScavengerRareMix",
+      "probabilityWeight": 1
+    },
+    {
+      "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "SoldierAlertMix",
+      "probabilityWeight": 1
+    },
+    {
+      "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "SoldierRareMix",
+      "probabilityWeight": 1
+    },
+    {
+      "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "TribalAlertMix",
+      "probabilityWeight": 1
+    },
+    {
+      "$type": "ThunderRoad.CreatureTable+Drop, ThunderRoad",
+      "reference": "Table",
+      "referenceID": "TribalRareMix",
+      "probabilityWeight": 1
+    }
+  ],
+  "groupPath": "Factions/Sandbox"
+}
+

@@ -78,7 +78,7 @@ class ModParser
     end
 
     def path_to_create
-      return './templates/01_custom/'
+      return './templates/02_custom/'
     end
 
     def save_file(file_name, file_data)
@@ -96,7 +96,7 @@ class ModParser
       end
       item_ids = []
       file_names.each do |fname|
-        next if !fname[/_Base_/].nil?
+        next if !filename_is_allowed(fname)
         begin
           data = File.read(fname)
           data = JSON.parse(data)
@@ -109,6 +109,19 @@ class ModParser
         end
       end
       return item_ids
+    end
+
+    def filename_is_allowed(filename)
+      [
+        /_Base_/,
+        /Humans?/,
+        /Player/
+      ].each do |rule|
+        if !filename[rule].nil?
+          return false
+        end
+      end
+      return true
     end
 
     def parse_file_data(data)

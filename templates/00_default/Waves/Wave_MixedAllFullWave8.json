@@ -35,7 +35,7 @@
       "factionID": 3,
       "groupHealthMultiplier": 1.0,
       "minMaxCount": {
-        "x": 6,
+        "x": 8,
         "y": 8
       },
       "spawnPointIndex": -1,
@@ -50,7 +50,7 @@
       "factionID": 3,
       "groupHealthMultiplier": 1.0,
       "minMaxCount": {
-        "x": 6,
+        "x": 8,
         "y": 8
       },
       "spawnPointIndex": -1,
@@ -65,7 +65,7 @@
       "factionID": 3,
       "groupHealthMultiplier": 1.0,
       "minMaxCount": {
-        "x": 6,
+        "x": 8,
         "y": 8
       },
       "spawnPointIndex": -1,
@@ -80,7 +80,7 @@
       "factionID": 3,
       "groupHealthMultiplier": 1.0,
       "minMaxCount": {
-        "x": 6,
+        "x": 8,
         "y": 8
       },
       "spawnPointIndex": -1,

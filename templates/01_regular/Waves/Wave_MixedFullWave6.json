@@ -1,13 +1,13 @@
 {
   "$type": "ThunderRoad.WaveData, ThunderRoad",
-  "id": "MixedAllFullWave6",
+  "id": "MixedAllRegularWave6",
   "sensitiveContent": "None",
   "sensitiveFilterBehaviour": "Discard",
   "version": 2,
   "category": "Endless",
   "localizationId": "",
-  "title": "Mixed everything 1v6",
-  "description": "Endless 1v6 from everything against you",
+  "title": "Mixed 1v6 Regular",
+  "description": "Endless 1v6 from the base game against you",
   "loopBehavior": "LoopSeamless",
   "totalMaxAlive": 6,
   "alwaysAvailable": true,
@@ -30,7 +30,7 @@
     {
       "$type": "ThunderRoad.WaveData+Group, ThunderRoad",
       "reference": "Table",
-      "referenceID": "MixedAllFull",
+      "referenceID": "MixedAllRegular",
       "overrideFaction": true,
       "factionID": 3,
       "groupHealthMultiplier": 1.0,
@@ -45,7 +45,7 @@
     {
       "$type": "ThunderRoad.WaveData+Group, ThunderRoad",
       "reference": "Table",
-      "referenceID": "MixedAllFull",
+      "referenceID": "MixedAllRegular",
       "overrideFaction": true,
       "factionID": 3,
       "groupHealthMultiplier": 1.0,
@@ -60,7 +60,7 @@
     {
       "$type": "ThunderRoad.WaveData+Group, ThunderRoad",
       "reference": "Table",
-      "referenceID": "MixedAllFull",
+      "referenceID": "MixedAllRegular",
       "overrideFaction": true,
       "factionID": 3,
       "groupHealthMultiplier": 1.0,
@@ -75,7 +75,7 @@
     {
       "$type": "ThunderRoad.WaveData+Group, ThunderRoad",
       "reference": "Table",
-      "referenceID": "MixedAllFull",
+      "referenceID": "MixedAllRegular",
       "overrideFaction": true,
       "factionID": 3,
       "groupHealthMultiplier": 1.0,

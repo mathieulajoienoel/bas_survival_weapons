@@ -28,7 +28,7 @@ class Waves < ModParser
     end
 
     def path_to_create
-      return './templates/01_custom/CreatureTables'
+      return './templates/02_custom/CreatureTables'
     end
 
     def parse_file_data(data)

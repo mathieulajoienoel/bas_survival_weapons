@@ -34,7 +34,7 @@ class LootTables < ModParser
     end
 
     def path_to_create
-      return './templates/01_custom/LootTables'
+      return './templates/02_custom/LootTables'
     end
 
     def parse_file_data(data)
